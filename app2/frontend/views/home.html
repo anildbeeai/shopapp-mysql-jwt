@@ -1,0 +1,29 @@
+<div class="hero">
+  <h1>🛒 Welcome to ShopApp</h1>
+  <p>Discover amazing products at unbeatable prices. Your one-stop shop for everything tech.</p>
+  <div class="hero-btns">
+    <a href="#!/products" class="btn btn-white btn-primary">Browse Products</a>
+    <a href="#!/register" ng-if="!isLoggedIn" class="btn btn-outline-white">Get Started</a>
+    <a href="#!/profile" ng-if="isLoggedIn" class="btn btn-outline-white">My Profile</a>
+  </div>
+</div>
+
+<div class="section-header">
+  <h2 class="section-title">⭐ Featured Products</h2>
+  <a href="#!/products" class="btn btn-secondary btn-sm">View All →</a>
+</div>
+
+<div class="grid grid-3">
+  <div class="card product-card" ng-repeat="product in featuredProducts">
+    <div class="product-img">💻</div>
+    <div class="product-info">
+      <div class="product-name">{{product.name}}</div>
+      <div class="product-desc">{{product.description}}</div>
+      <div class="product-footer">
+        <span class="product-price">${{product.price}}</span>
+        <span class="product-stock">✓ {{product.stock}} in stock</span>
+      </div>
+      <a href="#!/products/{{product.id}}" class="btn btn-primary full-width mt-2">View Details</a>
+    </div>
+  </div>
+</div>

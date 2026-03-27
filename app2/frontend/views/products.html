@@ -1,0 +1,29 @@
+<div class="section-header">
+  <h2 class="section-title">🛍️ All Products</h2>
+  <input class="form-control" style="max-width:280px" type="text" placeholder="🔍 Search products..." ng-model="search" />
+</div>
+
+<div class="loading-wrapper" ng-if="loading"><div class="spinner"></div></div>
+
+<div ng-if="!loading">
+  <div class="grid grid-3">
+    <div class="card product-card" ng-repeat="product in filteredProducts() track by product.id">
+      <div class="product-img">{{getEmoji($index)}}</div>
+      <div class="product-info">
+        <div class="product-name">{{product.name}}</div>
+        <div class="product-desc">{{product.description}}</div>
+        <div class="product-footer">
+          <span class="product-price">${{product.price}}</span>
+          <span class="product-stock">✓ {{product.stock}} left</span>
+        </div>
+        <a href="#!/products/{{product.id}}" class="btn btn-primary full-width mt-2">View Details</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="empty-state" ng-if="filteredProducts().length === 0">
+    <div class="empty-icon">🔍</div>
+    <h3>No products found</h3>
+    <p>Try a different search term</p>
+  </div>
+</div>

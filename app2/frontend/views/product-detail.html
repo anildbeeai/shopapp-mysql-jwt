@@ -1,0 +1,20 @@
+<div class="loading-wrapper" ng-if="loading"><div class="spinner"></div></div>
+
+<div ng-if="!loading && product" class="card" style="max-width:700px; margin:0 auto">
+  <div class="product-img" style="height:250px; font-size:6rem">💻</div>
+  <div class="card-body">
+    <h1 class="card-title" style="font-size:1.75rem">{{product.name}}</h1>
+    <p class="card-text mt-1">{{product.description}}</p>
+    <div style="display:flex; gap:2rem; margin:1.5rem 0; align-items:center">
+      <span class="product-price" style="font-size:2rem">${{product.price}}</span>
+      <span class="badge badge-user">{{product.stock}} in stock</span>
+    </div>
+    <div style="display:flex; gap:1rem; flex-wrap:wrap">
+      <button class="btn btn-primary" ng-if="isLoggedIn">🛒 Add to Cart</button>
+      <a href="#!/products" class="btn btn-secondary">← Back to Products</a>
+    </div>
+    <div class="alert alert-danger mt-2" ng-if="!isLoggedIn">
+      <a href="#!/login" class="auth-link">Login</a> to purchase this item.
+    </div>
+  </div>
+</div>

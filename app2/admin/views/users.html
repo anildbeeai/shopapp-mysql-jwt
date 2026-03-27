@@ -1,0 +1,53 @@
+<!-- Toolbar -->
+<div style="margin-bottom:1.25rem">
+  <input class="form-control" style="max-width:300px" type="text" placeholder="🔍 Search by name or email..." ng-model="search" />
+</div>
+
+<!-- Loading -->
+<div ng-if="loading" style="text-align:center; padding:2rem"><div class="spinner"></div></div>
+
+<!-- Table -->
+<div class="card" ng-if="!loading">
+  <div class="table-wrapper">
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Role</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="user in filteredUsers() track by user.id">
+          <td class="text-muted">#{{user.id}}</td>
+          <td style="font-weight:600">
+            <div style="display:flex; align-items:center; gap:.75rem">
+              <div style="width:34px; height:34px; border-radius:50%; background:#e0e7ff; display:flex; align-items:center; justify-content:center; font-weight:700; color:#4f46e5; font-size:.9rem; flex-shrink:0">
+                {{user.name[0]}}
+              </div>
+              {{user.name}}
+            </div>
+          </td>
+          <td class="text-muted">{{user.email}}</td>
+          <td>
+            <span class="badge" ng-class="user.role === 'admin' ? 'badge-admin' : 'badge-user'">
+              {{user.role === 'admin' ? '👑 Admin' : '👤 User'}}
+            </span>
+          </td>
+          <td>
+            <button class="btn btn-danger btn-sm" ng-click="delete(user)" ng-disabled="user.role === 'admin'">
+              🗑️ Delete
+            </button>
+            <span class="text-muted" ng-if="user.role === 'admin'" style="font-size:.75rem; margin-left:.5rem">Protected</span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="empty-state" ng-if="filteredUsers().length === 0">
+      <div class="icon">👥</div>
+      <p>No users found</p>
+    </div>
+  </div>
+</div>
